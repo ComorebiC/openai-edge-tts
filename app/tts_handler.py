@@ -103,16 +103,16 @@ def get_models():
 async def _get_voices(language=None):
     # List all voices, filter by language if specified
     all_voices = await edge_tts.list_voices()
-    language = language or DEFAULT_LANGUAGE  # Use default if no language specified
-    filtered_voices = [
-        {"name": v['ShortName'], "gender": v['Gender'], "language": v['Locale']}
-        for v in all_voices if language == 'all' or language is None or v['Locale'] == language
-    ]
-    return filtered_voices
+    # language = language or DEFAULT_LANGUAGE  # Use default if no language specified
+    # filtered_voices = [
+    #     {"name": v['ShortName'], "gender": v['Gender'], "language": v['Locale']}
+    #     for v in all_voices if language == 'all' or language is None or v['Locale'] == language
+    # ]
+    # return filtered_voices
+    return all_voices
 
 def get_voices(language=None):
     return asyncio.run(_get_voices(language))
-
 def speed_to_rate(speed: float) -> str:
     """
     Converts a multiplicative speed value to the edge-tts "rate" format.
